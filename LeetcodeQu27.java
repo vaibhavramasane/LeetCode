@@ -31,8 +31,6 @@ class LeetcodeQu27 {
 		int v = xyz.nextInt();
 		
 		LeetcodeQu27 obj  = new LeetcodeQu27();
-		
-		
 		int res = obj.removeElement(a,v);
 		System.out.println("Output: " + res);
 		
