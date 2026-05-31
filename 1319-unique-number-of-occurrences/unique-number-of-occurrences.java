@@ -2,17 +2,16 @@ import java.util.*;
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
 
-       int freq[]=new int[2001];
-        for(int i=0;i<arr.length;i++)
-        {
-            freq[arr[i]+1000]++;
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for(int n : arr){
+            map.put(n,map.getOrDefault(n,0)+1);
         }
-        Set<Integer> set=new HashSet<>();
-        for (int count : freq) {
-            if (count > 0) {
-                if (!set.add(count)) return false;
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(int f : map.values()){
+            if(!set.add(f)){
+                return false;
             }
         }
-        return true; 
+        return true;
     }
 }
