@@ -7,11 +7,8 @@ class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> ans = new ArrayList<>();
 
-        if (digits.length() == 0)
-            return ans;
-
-        BTrack(ans, new StringBuilder(), digits, 0);
-            return ans;
+        if (digits.length() == 0) return ans;
+        BTrack(ans, new StringBuilder(), digits, 0); return ans;
     }
 
     private void BTrack(List<String> ans, StringBuilder sb, String digits, int idx) {
