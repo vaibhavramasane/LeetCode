@@ -1,34 +1,29 @@
 class Solution {
+    String[] Map = {
+        "", "", "abc", "def", "ghi", "jkl",
+        "mno", "pqrs", "tuv", "wxyz"
+    };
+
     public List<String> letterCombinations(String digits) {
-        List<String> res = new ArrayList<>();
-        
-        if (digits == null || digits.length() == 0) 
-            return res;
-        Map<Character, String> digitToLetters = new HashMap<>();
-        digitToLetters.put('2', "abc");
-        digitToLetters.put('3', "def");
-        digitToLetters.put('4', "ghi");
-        digitToLetters.put('5', "jkl");
-        digitToLetters.put('6', "mno");
-        digitToLetters.put('7', "pqrs");
-        digitToLetters.put('8', "tuv");
-        digitToLetters.put('9', "wxyz");
-        
-        backtrack(digits, 0, new StringBuilder(), res, digitToLetters);
-        return res;        
+        List<String> ans = new ArrayList<>();
+
+        if (digits.length() == 0)
+            return ans;
+
+        BTrack(ans, new StringBuilder(), digits, 0);
+            return ans;
     }
 
-    private void backtrack(String digits, int idx, StringBuilder comb, List<String> res, Map<Character, String> digitToLetters) {
+    private void BTrack(List<String> ans, StringBuilder sb, String digits, int idx) {
         if (idx == digits.length()) {
-            res.add(comb.toString());
+            ans.add(sb.toString());
             return;
         }
-        
-        String letters = digitToLetters.get(digits.charAt(idx));
-        for (char letter : letters.toCharArray()) {
-            comb.append(letter);
-            backtrack(digits, idx + 1, comb, res, digitToLetters);
-            comb.deleteCharAt(comb.length() - 1);
+        String letters = Map[digits.charAt(idx) - '0'];
+        for (char ch : letters.toCharArray()) {
+            sb.append(ch);
+            BTrack(ans, sb, digits, idx + 1);
+            sb.deleteCharAt(sb.length() - 1);
         }
-    }    
+    }
 }
