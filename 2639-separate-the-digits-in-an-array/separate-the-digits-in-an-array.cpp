@@ -1,17 +1,18 @@
-
 class Solution {
 public:
     vector<int> separateDigits(vector<int>& nums) {
-        vector<int> ans;
-
-        for (int n : nums) {
-            string s = to_string(n);
-
-            for (char ch : s) {
-                ans.push_back(ch - '0');
+        vector<int>st;
+        for(int i = nums.size()-1; i>=0; i--){
+            int n = nums[i];
+            while(n>0){
+                int rem = n % 10;
+                st.push_back(rem);
+                n= n/10 ;
             }
+            
         }
-
-        return ans;
+        reverse(st.begin(),st.end());
+    return st;
+        
     }
 };
